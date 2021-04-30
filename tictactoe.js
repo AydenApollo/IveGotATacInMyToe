@@ -1,6 +1,6 @@
 const theContainer = document.getElementById("theContainer");
 const cellElements = document.querySelectorAll(".cell");
-let spaces = ["", "", "", "", "", "", "", "", ""]
+const gameBoard = {}
 const oText = "O";
 const xText = "X"
 let xPlayer = xText
@@ -19,18 +19,33 @@ const winningConditions = [
 ];
 
 
+
 cellElements.forEach(cell => {
     cell.addEventListener("click", forClicked, {once : true})
 })
+function checkGame() {
+    for(let i = 0; i<cellElements.length; i++) {
+        //console.log(cellElements[i])
+        //console.log(cellElements[i].innerHTML)
+        gameBoard[i] = cellElements[i].innerHTML
+    }
+    console.log(gameBoard);
+    winningConditions.forEach(condition => {
+        console.log("condition", condition);
+        if (gameBoard[condition[0]] == xText && gameBoard[condition[1]] == xText && gameBoard[condition[2]] == xText) {
+            alert("X is the winner")
+        }
+        if (gameBoard[condition[0]] == oText && gameBoard[condition[1]] == oText && gameBoard[condition[2]] == oText) {
+            alert("O is the winner")
+        }
+}
 
 function forClicked (e) {
     const cell = e.target
-    spaces
     const currentPlayer = xPlayer ? xText : oText 
-        placeMark(cell, currentPlayer);
-        playerWin(currentPlayer);
-        changeSides();
-    
+    placeMark(cell, currentPlayer);
+    changeSides();
+    checkGame();
 }
 
 function placeMark(cell, currentPlayer) {
@@ -39,11 +54,7 @@ function placeMark(cell, currentPlayer) {
 function changeSides() {
     xPlayer = !xPlayer
 }
-function playerWin(currentPlayer) {
-    if(theContainer && currentPlayer === winningConditions) {
-        winningMessage.innerText = `${currentPlayer} is Victorious!`
-    }
-}
+
 
 
 
