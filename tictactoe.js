@@ -19,26 +19,29 @@ const winningConditions = [
 ];
 
 
+function checkGame() {
+    for(let i = 0; i<cellElements.length; i++) {
+        gameBoard[i] = cellElements[i].innerHTML
+    winningConditions.forEach(condition => 
+    {
+        console.log("condition", condition);
+        if (gameBoard[condition[0]] == xText && gameBoard[condition[1]] == xText && gameBoard[condition[2]] == xText) {
+            winningMessage.innerHTML = "Dragon's Blood Is Victorious"
+        }
+        if (gameBoard[condition[0]] == oText && gameBoard[condition[1]] == oText && gameBoard[condition[2]] == oText) {
+            winningMessage.innerHTML = "Wolf's Spine Is Victorious"
+        }
+    })
+}}
+
+
+
+
 
 cellElements.forEach(cell => {
     cell.addEventListener("click", forClicked, {once : true})
 })
-function checkGame() {
-    for(let i = 0; i<cellElements.length; i++) {
-        //console.log(cellElements[i])
-        //console.log(cellElements[i].innerHTML)
-        gameBoard[i] = cellElements[i].innerHTML
-    }
-    console.log(gameBoard);
-    winningConditions.forEach(condition => {
-        console.log("condition", condition);
-        if (gameBoard[condition[0]] == xText && gameBoard[condition[1]] == xText && gameBoard[condition[2]] == xText) {
-            alert("X is the winner")
-        }
-        if (gameBoard[condition[0]] == oText && gameBoard[condition[1]] == oText && gameBoard[condition[2]] == oText) {
-            alert("O is the winner")
-        }
-}
+
 
 function forClicked (e) {
     const cell = e.target
@@ -64,8 +67,8 @@ function changeSides() {
 
 
 function bind_listeners(){
-    var form = document.querySelector("form");
-    form.addEventListener("submit", cleanse_the_board)
+    var resetBoard = document.querySelector("#restartButton")
+    resetBoard.addEventListener("click", restartButton)
 }
 
 

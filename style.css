@@ -24,23 +24,34 @@ body {
 
 }
 
+#winning-message {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 2rem;
+    background-color: lightsteelblue;
+
+}
+
 .container{
     width: 100vw;
-    height: 74vh;
+    height: 56vh;
     display: grid;
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
-    border-style: solid;
     grid-template-columns: repeat(3, auto);
+    border-style: solid;
     background-color: lightslategray;
     color: black;font-size: 90px;
 }
 
+
 .cell{
     height: var(--cell-size);
     width: var(--cell-size);
+    display: flex;
     border:rgb(167, 162, 162) 1px solid;
     cursor: pointer;
 }
@@ -62,16 +73,8 @@ body {
 }
 
 
-.button{
-    display: flex;
-    justify-content: center;
-    background-color: lightgray;
-    cursor: pointer;
-}
 
 .clean {
-    background-color: white;
-    border: 1px solid black;
     cursor: pointer;
 }
 
@@ -82,9 +85,12 @@ body {
 }
 
 #players{
+    width: 100vw;
+    height: 34vh;
     display: flex;
     justify-content: center;
     align-content: center;
+    justify-content: space-evenly;
     background-color: lightgray;
     cursor: crosshair;
 }
