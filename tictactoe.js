@@ -58,8 +58,7 @@ function checkGame() {
             img = document.querySelector("#wolfy");
             img.style.display = 'block';
             currentWinner = "O"
-        } 
-        
+        }
     })
     if (currentWinner == "X") {
         localStorage.setItem("playerXScore", parseInt(localStorage.getItem("playerXScore")) + 1)
@@ -67,6 +66,26 @@ function checkGame() {
         localStorage.setItem("playerOScore", parseInt(localStorage.getItem("playerOScore")) + 1)
     }
 }}
+
+
+function isDraw() {
+    for(let i = 0; i<cellElements.length; i++) {
+        gameBoard[i] = cellElements[i].innerHTML
+    winningConditions.forEach(condition => 
+    {
+        if (gameBoard[condition[0]] !== xText && gameBoard[condition[1]] !== xText && gameBoard[condition[2]] !== xText) {
+            winningMessage.innerHTML = "Back Into The Fray"
+        }
+        if (gameBoard[condition[0]] !== xText && gameBoard[condition[1]] !== xText && gameBoard[condition[2]] !== xText) {
+            winningMessage.innerHTML = "Back Into The Fray"
+        }
+    })
+    
+}}
+
+        
+    
+
 
 
 cellElements.forEach(cell => {
@@ -78,6 +97,9 @@ function forClicked (e) {
     const cell = e.target
     const currentPlayer = xPlayer ? xText : oText
     placeMark(cell, currentPlayer);
+    if (checkGame(false)) {
+        isDraw(true);
+    }
     changeSides();
     checkGame();
 }
